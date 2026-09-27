@@ -114,7 +114,6 @@
   },
   "scripts": {
     "start": "expo start",
-    "admin": "bun scripts/admin.ts",
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
@@ -126,10 +125,7 @@
     "check:owner-scope": "bun scripts/check-owner-scope.ts",
     "check:flip": "bun scripts/check-flip.ts",
     "check:card-image": "bun scripts/check-card-image.ts",
-    "build:card-scenes": "bun scripts/build-card-scenes.ts",
     "build:catalog": "bun scripts/build-curated-catalog.ts",
-    "refresh:catalog-names": "bun scripts/refresh-catalog-names.ts",
-    "build:catalog-index": "bun scripts/build-catalog-index.ts",
     "check:supabase": "bun --env-file=.env.local scripts/check-supabase.ts",
     "check:seasons": "bun scripts/check-season-nudges.ts",
     "check:screen": "bun scripts/check-screen-guard.ts",
