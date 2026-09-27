@@ -1,0 +1,64 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "subject-lift": [
+        "./modules/subject-lift"
+      ],
+      "progressive-blur": [
+        "./modules/progressive-blur"
+      ]
+    },
+    "resolveJsonModule": true
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts"
+  ],
+  "exclude": [
+    "convex",
+    "scripts/backfill-rarity.ts",
+    "scripts/backfill-vernaculars.ts",
+    "scripts/migrate-account.ts",
+    "scripts/backfill-sticker-thumbs.ts",
+    "scripts/build-card-thumbs.ts",
+    "scripts/check-book-pdf.ts",
+    "scripts/build-catalog.ts",
+    "scripts/catalog-to-jsonl.ts",
+    "scripts/migrate-convex-to-supabase.ts",
+    "scripts/seed-seasons.ts",
+    "scripts/rank-catalog-candidates.ts",
+    "scripts/recompute-rarity.ts",
+    "scripts/check-supabase.ts",
+    "scripts/expand-catalog.ts",
+    "scripts/purge-unphotographable.ts",
+    "scripts/purge-extinct.ts",
+    "scripts/calibrate-rarity.ts",
+    "scripts/sweep-zoo-families.ts",
+    "scripts/import-zoo-inventory.ts",
+    "scripts/check-zoo-inventory.ts",
+    "scripts/publish-safari-sites.ts",
+    "scripts/check-vernacular-consensus.ts",
+    "scripts/check-full-art-glitter.ts",
+    "scripts/check-effect-worklets.ts",
+    "scripts/check-guide-ephemeral.ts",
+    "scripts/check-correction.ts",
+    "scripts/check-ugc-moderation.ts",
+    "scripts/check-launch-flags.ts",
+    "scripts/check-premium-gates.ts",
+    "scripts/check-onesignal.ts",
+    "scripts/check-camera-flash.ts",
+    "scripts/check-force-update.ts",
+    "scripts/check-splash.ts",
+    "scripts/check-i18n.ts",
+    "scripts/upload-card-scenes.ts",
+    "scripts/build-species-descriptions.ts",
+    "supabase/functions"
+  ]
+}

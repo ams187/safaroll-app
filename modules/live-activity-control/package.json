@@ -1,0 +1,7 @@
+{
+  "name": "live-activity-control",
+  "version": "1.0.0",
+  "description": "Local dismissal of OneSignal Live Activities.",
+  "main": "index.ts",
+  "private": true
+}

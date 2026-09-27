@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <!-- LA LANGUE DE BASE DE L'EXTENSION.
+         Sans elle, iOS suppose l'anglais américain par défaut — ce qui tombe
+         juste ici, mais autant le dire. Elle doit surtout rester COHÉRENTE avec
+         `CFBundleDevelopmentRegion` de l'app : c'est la langue sur laquelle
+         retombe un téléphone qui n'a ni français ni anglais. -->
+    <key>CFBundleDevelopmentRegion</key>
+    <string>en</string>
+    <!-- Les langues réellement livrées, celles des dossiers `.lproj` d'à côté.
+         Déclarées explicitement pour que le système les propose même si le
+         dossier synchronisé d'Xcode change de forme. -->
+    <key>CFBundleLocalizations</key>
+    <array>
+      <string>en</string>
+      <string>fr</string>
+    </array>
+    <key>NSExtension</key>
+    <dict>
+      <key>NSExtensionPointIdentifier</key>
+      <string>com.apple.widgetkit-extension</string>
+    </dict>
+  </dict>
+</plist>

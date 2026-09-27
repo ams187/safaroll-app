@@ -1,0 +1,8 @@
+{
+  "CFBundleDisplayName": "SafaRoll",
+  "NSCameraUsageDescription": "SafaRoll uses the camera to photograph the animals you meet.",
+  "NSMicrophoneUsageDescription": "SafaRoll listens locally for nearby wildlife sounds when you enable Wild Listening.",
+  "NSPhotoLibraryUsageDescription": "SafaRoll opens your photo library only when you choose to import a picture.",
+  "NSPhotoLibraryAddUsageDescription": "SafaRoll saves an image to your Photos when you ask it to.",
+  "NSLocationWhenInUseUsageDescription": "SafaRoll records where each capture was made, to place it on your world map. You can continue without: identification does not change."
+}

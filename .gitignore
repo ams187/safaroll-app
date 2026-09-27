@@ -1,0 +1,66 @@
+# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
+
+# dependencies
+node_modules/
+
+# Expo
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+
+# Native
+.kotlin/
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
+# Metro
+.metro-health-check*
+
+# debug
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# macOS
+.DS_Store
+*.pem
+
+# local env files
+.env*.local
+
+# typescript
+*.tsbuildinfo
+
+# generated native folders
+/ios
+/android
+
+# Local builds
+*.ipa
+*.apk
+# EAS Simulator session (carries a token - do not commit)
+.env.eas-simulator
+
+# Model artefacts: 295MB of weights have no business in git history. They are
+# rebuilt by services/species-id/export_executorch.py and fetched at build time.
+modules/species-id/assets/*.pte
+modules/species-id/assets/*.bin
+convex/data/catalog.jsonl
+
+# Sorties de scripts (SQL généré par seed:seasons, journaux). Régénérables.
+.cache/
+
+.env.local
+
+# Écrit par le plugin Sentry à chaque prebuild, et contient le DSN.
+# Un DSN client n'est pas un secret (il part dans chaque binaire), mais il
+# n'a rien à faire dans l'historique : il change par déploiement.
+sentry.options.json
+
+# Comparaisons visuelles de planches — jetable, régénérable.
+.compare/

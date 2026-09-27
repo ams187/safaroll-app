@@ -1,0 +1,28 @@
+/* Voir `en.lproj/Localizable.strings` pour le pourquoi de ce fichier. */
+
+/* La tuile caméra */
+"widget_camera_title" = "Capturer";
+"widget_camera_subtitle" = "Ouvre le viseur";
+
+/* La tuile caméra, dans la galerie de widgets */
+"widget_camera_name" = "Capturer";
+"widget_camera_description" = "Ouvre l’appareil photo de SafaRoll.";
+
+/* La tuile deck, verrouillée */
+"widget_deck_locked_title" = "SafaRoll+";
+"widget_deck_locked_body" = "Ton deck sur ton écran d’accueil";
+
+/* La tuile deck, en attente de données */
+"widget_deck_waiting" = "Ouvre SafaRoll pour afficher ton deck";
+
+/* La tuile deck, dans la galerie de widgets */
+"widget_deck_name" = "Mon deck";
+"widget_deck_description" = "Ton deck principal sur ton écran d’accueil. SafaRoll+";
+
+/* Live Activity : carnet de terrain */
+"activity_objectives" = "objectifs photographiés";
+"activity_species" = "espèces photographiées";
+"activity_complete" = "Mission accomplie !";
+"activity_next %@" = "À trouver · %@";
+"activity_start" = "À toi de jouer !";
+"activity_new %lld" = "%lld nouvelles espèces";

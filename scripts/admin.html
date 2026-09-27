@@ -1,0 +1,137 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Atelier SafaRoll</title>
+<style>
+  :root {
+    --creme: #fffdf8; --sable: #f4eddc; --encre: #2b2418; --doux: #7a6f5b;
+    --or: #E3A93C; --trait: #e5dcc6; --vert: #4a7c52; --rouge: #a8442e;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 28px 24px 64px; background: var(--creme); color: var(--encre);
+    font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 4px; }
+  h1 { margin: 0; font-size: 22px; letter-spacing: -.02em; }
+  .compte { color: var(--doux); font-size: 13px; }
+  .aide { margin: 0 0 22px; max-width: 62ch; color: var(--doux); font-size: 13px; }
+  .grille { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(268px, 1fr)); }
+  .fiche {
+    display: flex; flex-direction: column; overflow: hidden;
+    border: 1px solid var(--trait); border-radius: 14px; background: #fff;
+  }
+  .apercu {
+    display: grid; place-items: center; aspect-ratio: 2/3; background: var(--sable);
+    color: var(--doux); font-size: 12px;
+  }
+  .apercu img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .corps { display: flex; flex-direction: column; gap: 8px; padding: 12px 13px 13px; }
+  .latin { font-style: italic; font-weight: 600; }
+  .noms { color: var(--doux); font-size: 13px; }
+  .noms .manque { color: var(--rouge); }
+  .meta { display: flex; flex-wrap: wrap; gap: 6px; }
+  .puce {
+    padding: 2px 8px; border-radius: 999px; background: var(--sable);
+    color: var(--doux); font-size: 11px; font-variant-numeric: tabular-nums;
+  }
+  .actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+  button {
+    padding: 7px 11px; border: 1px solid var(--trait); border-radius: 9px;
+    background: #fff; color: var(--encre); font: inherit; font-size: 13px; cursor: pointer;
+  }
+  button:hover:not(:disabled) { border-color: var(--doux); }
+  button:disabled { opacity: .45; cursor: default; }
+  button.or { border-color: var(--or); background: var(--or); color: #fff; font-weight: 600; }
+  button.refus { border-color: #e8d0c8; color: var(--rouge); }
+  .etat { font-size: 12px; min-height: 16px; }
+  .etat.encours { color: var(--or); }
+  .etat.prete { color: var(--vert); }
+  .etat.echec { color: var(--rouge); }
+</style>
+
+<header>
+  <h1>Atelier SafaRoll</h1>
+  <span class="compte" id="compte">chargement…</span>
+</header>
+<p class="aide">
+  Les espèces les plus photographiées sans planche, en premier. Une planche générée
+  reste locale : tant qu'elle n'est pas publiée, l'app emprunte celle d'une espèce
+  voisine. Regarde avant de publier.
+</p>
+<div class="grille" id="grille"></div>
+
+<script>
+  const grille = document.getElementById('grille');
+  const compte = document.getElementById('compte');
+  let lignes = [], travaux = {};
+
+  const poste = (route, corps) =>
+    fetch('/api/' + route, { method: 'POST', body: JSON.stringify(corps) }).then((r) => r.json());
+
+  async function rafraichir() {
+    const data = await fetch('/api/file').then((r) => r.json());
+    if (data.erreur) { compte.textContent = data.erreur; return; }
+    lignes = data.lignes; travaux = data.travaux;
+    compte.textContent = lignes.length + ' espèces en file';
+    dessiner();
+  }
+
+  function dessiner() {
+    grille.innerHTML = '';
+    for (const l of lignes) {
+      const t = travaux[l.scientific_name];
+      const fiche = document.createElement('div');
+      fiche.className = 'fiche';
+
+      // L'aperçu n'est demandé que si le serveur a vu le fichier : sinon chaque
+      // rafraîchissement lancerait une requête vouée au 404.
+      const vignette = l.planche
+        ? `<img src="/api/planche/${encodeURIComponent(l.scientific_name)}?v=${Date.now()}" alt="">`
+        : 'aucune planche';
+
+      fiche.innerHTML = `
+        <div class="apercu">${vignette}</div>
+        <div class="corps">
+          <div class="latin">${l.scientific_name}</div>
+          <div class="noms">
+            ${l.vernacular_name || '<span class="manque">nom fr manquant</span>'} ·
+            ${l.vernacular_name_en || '<span class="manque">nom en manquant</span>'}
+          </div>
+          <div class="meta">
+            <span class="puce">${l.animal_group || '—'}</span>
+            <span class="puce">${l.captures} capture${l.captures > 1 ? 's' : ''}</span>
+            <span class="puce">${l.joueurs} joueur${l.joueurs > 1 ? 's' : ''}</span>
+            <span class="puce">${l.origine}</span>
+          </div>
+          <div class="etat ${t ? ({'en cours':'encours','prête':'prete','échec':'echec'})[t.etat] : ''}">${t ? t.message : ''}</div>
+          <div class="actions"></div>
+        </div>`;
+
+      const actions = fiche.querySelector('.actions');
+      const occupe = t?.etat === 'en cours';
+      const bouton = (texte, classe, fn) => {
+        const b = document.createElement('button');
+        b.textContent = texte; if (classe) b.className = classe;
+        b.disabled = occupe;
+        b.onclick = async () => { b.disabled = true; await fn(); rafraichir(); };
+        actions.append(b);
+      };
+
+      bouton(l.planche ? 'Regénérer' : 'Générer', '', () =>
+        poste('generer', { groupe: l.animal_group, nom: l.scientific_name, vernaculaire: l.vernacular_name || '' }));
+      if (!l.vernacular_name || !l.vernacular_name_en) {
+        bouton('Traduire', '', () => poste('traduire', { groupe: l.animal_group, nom: l.scientific_name }));
+      }
+      if (l.planche) {
+        bouton('Publier', 'or', () => poste('publier', { nom: l.scientific_name }));
+        bouton('Rejeter', 'refus', () => poste('rejeter', { nom: l.scientific_name }));
+      }
+      grille.append(fiche);
+    }
+  }
+
+  rafraichir();
+  // Une génération dure ~2 min : on sonde le serveur plutôt que de laisser la
+  // page figée sur un état qui a déjà changé.
+  setInterval(rafraichir, 4000);
+</script>

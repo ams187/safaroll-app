@@ -1,0 +1,39 @@
+/* LES CHAÎNES DU WIDGET, EN NATIF — i18next NE PEUT RIEN POUR ELLES.
+
+   Une extension est un binaire séparé : ni bundle JS, ni `src/locales`, ni
+   réseau. Ce qu'elle affiche doit être compilé avec elle.
+
+   L'ANGLAIS EST LA LANGUE DE BASE, comme `CFBundleDevelopmentRegion` et comme
+   les replis d'`infoPlist` : un Allemand qui n'a ni `fr` ni `en` sur son
+   téléphone tombe ici, et il vaut mieux qu'il y trouve de l'anglais.
+
+   Les deux dernières clés de chaque widget sont lues par iOS pour la GALERIE,
+   avant même que l'extension ne tourne. C'est précisément ce qu'un passage par
+   l'App Group ne pourrait pas traduire — d'où la localisation native. */
+
+/* La tuile caméra */
+"widget_camera_title" = "Capture";
+"widget_camera_subtitle" = "Open the viewfinder";
+
+/* La tuile caméra, dans la galerie de widgets */
+"widget_camera_name" = "Capture";
+"widget_camera_description" = "Opens the SafaRoll camera.";
+
+/* La tuile deck, verrouillée */
+"widget_deck_locked_title" = "SafaRoll+";
+"widget_deck_locked_body" = "Your deck on your Home Screen";
+
+/* La tuile deck, en attente de données */
+"widget_deck_waiting" = "Open SafaRoll to show your deck";
+
+/* La tuile deck, dans la galerie de widgets */
+"widget_deck_name" = "My deck";
+"widget_deck_description" = "Your main deck on your Home Screen. SafaRoll+";
+
+/* Live Activity: field journal */
+"activity_objectives" = "targets photographed";
+"activity_species" = "species photographed";
+"activity_complete" = "Mission complete!";
+"activity_next %@" = "Find next · %@";
+"activity_start" = "Your adventure starts here!";
+"activity_new %lld" = "%lld new species";

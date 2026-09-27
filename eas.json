@@ -1,0 +1,38 @@
+{
+  "cli": {
+    "version": ">= 20.5.1",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "ios": {
+        "image": "macos-tahoe-26.5-xcode-26.6"
+      },
+      "channel": "development"
+    },
+    "preview": {
+      "distribution": "internal",
+      "ios": {
+        "image": "macos-tahoe-26.5-xcode-26.6"
+      },
+      "channel": "preview"
+    },
+    "production": {
+      "environment": "production",
+      "distribution": "store",
+      "env": {
+        "NODE_ENV": "production"
+      },
+      "autoIncrement": true,
+      "ios": {
+        "image": "macos-tahoe-26.5-xcode-26.6"
+      },
+      "channel": "production"
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}
