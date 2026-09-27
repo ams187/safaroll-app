@@ -1,9 +1,16 @@
-# Fonts (not included)
+# Fonts
 
-The shipped app uses fonts whose licenses do not allow redistribution. Before
-building, add these files to this folder:
+The shipped app uses **Satoshi** (Fontshare) and **Exposure** (a commercial
+display serif). Their licenses do not allow redistribution, so this folder holds
+**free placeholders under the same file names**, so the project builds as-is:
 
-- `Satoshi-Regular.otf`, `Satoshi-Medium.otf`, `Satoshi-Bold.otf` — free from
-  Fontshare: https://www.fontshare.com/fonts/satoshi
-- `ExposureTrial-0.otf` — display serif used for card titles. Any serif font
-  renamed to this file works for local builds.
+| File | Placeholder | License |
+|---|---|---|
+| `Satoshi-Regular/Medium/Bold.otf` | Manrope 400/500/700 | SIL OFL 1.1 (`OFL-Manrope.txt`) |
+| `ExposureTrial-0.otf` | DM Serif Display | SIL OFL 1.1 (`OFL-DMSerifDisplay.txt`) |
+
+To get the original look, drop the real files over these ones:
+Satoshi is free from https://www.fontshare.com/fonts/satoshi.
+
+Text styled with the `Satoshi-*` family names falls back to the iOS system font
+when the placeholders are used; everything else works the same.

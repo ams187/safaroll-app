@@ -74,7 +74,7 @@ cut-out does not run on the simulator). Expo Go is not supported.
    then set `ANIMAL_ID_API_URL` and `ANIMAL_ID_API_TOKEN` as Edge Function secrets.
 4. **Edge Functions**: `supabase functions deploy`, and set the secrets listed
    in `.env.example`.
-5. **Fonts**: see `assets/fonts/README.md` (not redistributable).
+5. **Fonts**: free placeholders are included, so the app builds as-is; see `assets/fonts/README.md` to use the original fonts.
 6. **App**:
    ```sh
    cp .env.example .env.local   # fill in the public keys
@@ -91,7 +91,7 @@ cut-out does not run on the simulator). Expo Go is not supported.
   a few samples are in `assets/cards/species/` and can be uploaded to that
   bucket. Without a scene, a card keeps its color gradient and foil.
 - **User data** and **secrets**: none of either is in this repository.
-- **Fonts**: see above.
+- **Original fonts**: replaced by free placeholders (see `assets/fonts/README.md`).
 
 ## License
 
